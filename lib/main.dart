@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:reposer/components/textStyleComponents.dart';
+import 'package:reposer/sessionChoice.dart';
+import 'sessionChoice.dart';
+import './components/textStyleComponents.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,27 +61,40 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 25.0,
               ),
-              TextButton(
-                onPressed: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 3.0,
-                    horizontal: 14.0,
-                  ),
-                  child: Text(
-                    'Start Session',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.white.withOpacity(0.2),
-                ),
-              )
+              TransparentTitle(
+                  pressedAction: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return SessionChoiceScreen();
+                    }));
+                  },
+                  title: 'Start Session',
+                  titleSize: 22.0),
+              // TextButton(
+              //   onPressed: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //       return SessionChoiceScreen();
+              //     }));
+              //   },
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(
+              //       vertical: 3.0,
+              //       horizontal: 14.0,
+              //     ),
+              //     child: Text(
+              //       'Start Session',
+              //       style: TextStyle(
+              //         fontSize: 22.0,
+              //         color: Colors.white,
+              //         fontWeight: FontWeight.w800,
+              //       ),
+              //     ),
+              //   ),
+              //   style: TextButton.styleFrom(
+              //     foregroundColor: Colors.white,
+              //     backgroundColor: Colors.white.withOpacity(0.2),
+              //   ),
+              // )
             ],
           ),
         ),
