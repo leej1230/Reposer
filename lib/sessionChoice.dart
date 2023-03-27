@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './components/searchBar.dart';
 import './components/componentCards.dart';
+import 'achievement.dart';
 
 class SessionChoiceScreen extends StatelessWidget {
   @override
@@ -93,10 +94,17 @@ class SessionChoiceScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Icon(
-                FontAwesomeIcons.crown,
-                color: Colors.white,
-                size: 35.0,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return AchievementScreen();
+                  }));
+                },
+                child: Icon(
+                  FontAwesomeIcons.crown,
+                  color: Colors.white,
+                  size: 35.0,
+                ),
               ),
             ),
           ],
