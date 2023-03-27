@@ -1,50 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:reposer/components/scaffoldTemplate.dart';
 import 'components/achievementCalender.dart';
 
 class AchievementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        elevation: 0.0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Icon(
-                Icons.home,
-                color: Colors.white,
-                size: 35.0,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Icon(
-                Icons.favorite,
-                color: Colors.white,
-                size: 35.0,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Icon(
-                FontAwesomeIcons.crown,
-                color: Colors.white,
-                size: 35.0,
-              ),
-            ),
-          ],
-        ),
-      ),
+    return ScaffoldTemplate(
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

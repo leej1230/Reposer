@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './components/searchBar.dart';
 import './components/componentCards.dart';
-import 'achievement.dart';
+import './components/scaffoldTemplate.dart';
 
 class SessionChoiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-      ),
+    //TODO 2 make scaffold widget that can be used in each screen (take body for argument)
+    return ScaffoldTemplate(
       body: Container(
         color: Color(0xFF15002c),
         child: Column(
@@ -65,46 +59,6 @@ class SessionChoiceScreen extends StatelessWidget {
               child: ComponentCards(
                 cardCol: 2,
                 cardRow: 3,
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        elevation: 0.0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Icon(
-                Icons.home,
-                color: Colors.white,
-                size: 35.0,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Icon(
-                Icons.favorite,
-                color: Colors.white,
-                size: 35.0,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return AchievementScreen();
-                  }));
-                },
-                child: Icon(
-                  FontAwesomeIcons.crown,
-                  color: Colors.white,
-                  size: 35.0,
-                ),
               ),
             ),
           ],
