@@ -7,55 +7,51 @@ class FavoriteTracks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
-      body: Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/background/11.jpg'),
-              fit: BoxFit.fitHeight,
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background/11.jpg'),
+            fit: BoxFit.fitHeight,
           ),
-          child: SafeArea(
-            child: Expanded(
-              child: Center(
-                child: Column(
-                  children: [
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 30.0, horizontal: 10.0),
-                          child: Text(
-                            'Favorite Tracks',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40.0,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              children: [
+                Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          vertical: 30.0, horizontal: 10.0),
+                      child: Text(
+                        'Favorite Tracks',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.w700,
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 25.0),
-                          child: SearchBar(),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 25.0,
-                          vertical: 15.0,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(28)),
-                          color: Colors.white.withOpacity(0.3),
-                        ),
-                        child: likedSongList(),
                       ),
-                    )
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 25.0),
+                      child: SearchBar(),
+                    ),
                   ],
                 ),
-              ),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 25.0,
+                      vertical: 15.0,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(28)),
+                      color: Colors.white.withOpacity(0.3),
+                    ),
+                    child: likedSongList(),
+                  ),
+                )
+              ],
             ),
           ),
         ),

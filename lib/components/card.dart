@@ -2,13 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'textStyleComponents.dart';
 
-class SessionCard extends StatelessWidget {
-  SessionCard({required this.title, required this.imgSrc});
+class SessionCard extends StatefulWidget {
+  SessionCard(
+      {required this.title, required this.imgSrc, required this.sessionChosen});
 
   final String title;
   final Image imgSrc;
-  bool pickTime = false;
+  final void Function(String t) sessionChosen;
 
+  @override
+  State<SessionCard> createState() => _SessionCardState();
+}
+
+class _SessionCardState extends State<SessionCard> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,8 +23,10 @@ class SessionCard extends StatelessWidget {
         child: Column(
           children: <Widget>[
             GestureDetector(
-              child: imgSrc,
-              onTap: () {},
+              child: widget.imgSrc,
+              onTap: () {
+                widget.sessionChosen(widget.title);
+              },
             ),
             SizedBox(
               height: 7.0,
@@ -26,7 +34,7 @@ class SessionCard extends StatelessWidget {
             // TODO 1 go change textStyleComponents.dart that so that it allows to change padding
             TransparentTitle(
               pressedAction: () {},
-              title: title,
+              title: widget.title,
               titleSize: 15.0,
             ),
           ],

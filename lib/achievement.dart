@@ -15,21 +15,19 @@ class AchievementScreen extends StatelessWidget {
           ),
         ),
         child: SafeArea(
-          child: Expanded(
-            child: Center(
-              child: Column(
-                children: [
-                  Text(
-                    'Achievement',
-                    style: TextStyle(
-                      fontSize: 35.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+          child: Center(
+            child: Column(
+              children: [
+                Text(
+                  'Achievement',
+                  style: TextStyle(
+                    fontSize: 35.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
                   ),
-                  AchievementCalender(),
-                ],
-              ),
+                ),
+                AchievementCalender(),
+              ],
             ),
           ),
         ),
