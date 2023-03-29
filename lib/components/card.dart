@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'textStyleComponents.dart';
 
@@ -6,6 +7,7 @@ class SessionCard extends StatelessWidget {
 
   final String title;
   final Image imgSrc;
+  bool pickTime = false;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +16,9 @@ class SessionCard extends StatelessWidget {
         margin: EdgeInsets.all(6.0),
         child: Column(
           children: <Widget>[
-            FittedBox(
-              fit: BoxFit.fitHeight,
+            GestureDetector(
               child: imgSrc,
+              onTap: () {},
             ),
             SizedBox(
               height: 7.0,

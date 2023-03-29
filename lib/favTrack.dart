@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/components/scaffoldTemplate.dart';
 import 'package:reposer/components/searchBar.dart';
-import 'entities/secondsToMinute.dart';
+import 'components/likedSongList.dart';
 
 class FavoriteTracks extends StatelessWidget {
-  List<String> musicTitle = [
-    'Music A',
-    'Music B',
-    'Music C',
-  ];
-
-  List<int> musicTime = [
-    60,
-    59,
-    189,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
@@ -62,52 +50,7 @@ class FavoriteTracks extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(28)),
                           color: Colors.white.withOpacity(0.3),
                         ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              for (int i = 0; i < musicTime.length; i++)
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Icon(
-                                          Icons.play_arrow_rounded,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 7,
-                                        child: Text(
-                                          musicTitle[i],
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Center(
-                                          child: Text(
-                                            convertSecondsToMinute(
-                                                timeInSecond: musicTime[i]),
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                            ],
-                          ),
-                        ),
+                        child: likedSongList(),
                       ),
                     )
                   ],

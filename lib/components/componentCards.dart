@@ -27,31 +27,29 @@ class ComponentCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          for (int i = 0; i < this.cardRow; i++)
-            Row(
-              children: <Widget>[
-                for (int j = 0; j < this.cardCol; j++)
-                  SessionCard(
-                    title: titles[i * this.cardCol + j],
-                    imgSrc: Image.asset(
-                      imageSources[i * this.cardCol + j],
-                    ),
+    return Column(
+      // shrinkWrap: true,
+      children: <Widget>[
+        for (int i = 0; i < this.cardRow; i++)
+          Row(
+            children: <Widget>[
+              for (int j = 0; j < this.cardCol; j++)
+                SessionCard(
+                  title: titles[i * this.cardCol + j],
+                  imgSrc: Image.asset(
+                    imageSources[i * this.cardCol + j],
                   ),
-                // SessionCard(
-                //   title: 'Relaxation',
-                //   imgSrc: Image.asset(
-                //     'assets/images/background/10.jpg',
-                //     fit: BoxFit.fitHeight,
-                //   ),
-                // ),
-              ],
-            ),
-        ],
-      ),
+                ),
+              // SessionCard(
+              //   title: 'Relaxation',
+              //   imgSrc: Image.asset(
+              //     'assets/images/background/10.jpg',
+              //     fit: BoxFit.fitHeight,
+              //   ),
+              // ),
+            ],
+          ),
+      ],
     );
   }
 }

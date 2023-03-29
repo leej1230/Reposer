@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/components/textStyleComponents.dart';
 import 'package:reposer/sessionChoice.dart';
+import 'entities/addSongsToDB.dart';
 import 'sessionChoice.dart';
 import './components/textStyleComponents.dart';
 
 void main() {
+  // TODO add if statement to check whether the db already exists or not
+  // Function for initialize db if needed
   runApp(const MyApp());
+  addSongsToDB();
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

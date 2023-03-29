@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sqflite: ^2.0.0+3
+  path:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -65,6 +67,13 @@ flutter:
   # assets:
   assets:
     - assets/images/background/
+    - assets/sounds/Meditation/
+    - assets/sounds/Motivation/
+    - assets/sounds/Peaceful/
+    - assets/sounds/Relaxation/
+    - assets/sounds/Sleep/
+    - assets/sounds/Stress-free/
+#    - assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
