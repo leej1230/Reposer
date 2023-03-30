@@ -3,30 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:reposer/sessionScreen.dart';
 import 'card.dart';
 import 'textStyleComponents.dart';
+import 'package:reposer/entities/constants.dart';
 
 class ComponentCards extends StatefulWidget {
   ComponentCards({required this.cardRow, required this.cardCol});
 
   final int cardRow;
   final int cardCol;
-
-  static List<String> titles = [
-    'Relaxation',
-    'Stress Free',
-    'Peaceful',
-    'Meditation',
-    'Sleep',
-    'Motivation'
-  ];
-
-  static List<String> imageSources = [
-    'assets/images/background/7.jpg',
-    'assets/images/background/7.jpg',
-    'assets/images/background/9.jpg',
-    'assets/images/background/9.jpg',
-    'assets/images/background/11.jpg',
-    'assets/images/background/11.jpg',
-  ];
 
   String chosenSessionGenre = '';
 
@@ -49,9 +32,9 @@ class _ComponentCardsState extends State<ComponentCards> {
               children: <Widget>[
                 for (int j = 0; j < this.widget.cardCol; j++)
                   SessionCard(
-                    title: ComponentCards.titles[i * this.widget.cardCol + j],
+                    title: titles[i * this.widget.cardCol + j],
                     imgSrc: Image.asset(
-                      ComponentCards.imageSources[i * this.widget.cardCol + j],
+                      imageSources[i * this.widget.cardCol + j],
                     ),
                     sessionChosen: (String t) {
                       setState(() {
@@ -108,7 +91,9 @@ class _ComponentCardsState extends State<ComponentCards> {
                         MaterialPageRoute(
                           builder: (context) {
                             return SessionScreen(
-                                sessionGenre: widget.chosenSessionGenre);
+                              sessionGenre: widget.chosenSessionGenre,
+                              sessionTime: duration,
+                            );
                           },
                         ),
                       );
