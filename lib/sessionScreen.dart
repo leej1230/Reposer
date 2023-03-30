@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/components/card.dart';
+import 'package:reposer/components/musicPlayerMenu.dart';
 import 'package:reposer/components/sessionTimer.dart';
 import 'package:reposer/components/textStyleComponents.dart';
 import 'package:reposer/entities/constants.dart';

@@ -32,6 +32,10 @@ dependencies:
     sdk: flutter
   sqflite: ^2.0.0+3
   path:
+  get: ^4.6.5
+#  audioplayers: ^3.0.1
+  just_audio: ^0.9.32
+  rxdart: ^0.27.7
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -73,7 +77,7 @@ flutter:
     - assets/sounds/Relaxation/
     - assets/sounds/Sleep/
     - assets/sounds/Stress-free/
-#    - assets/
+    - assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
