@@ -75,9 +75,7 @@ class SessionScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                Expanded(
-                  child: MusicPlayerMenu(),
-                )
+                MusicPlayerMenu(),
                 //  Music Player
               ],
             ),
