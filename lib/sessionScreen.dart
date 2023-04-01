@@ -49,15 +49,17 @@ class SessionScreen extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              child: Image.asset(imageSources[0]),
+                              child: Image.asset(imageSources[
+                                  convertGenreForIndex[this.sessionGenre] ??
+                                      0]),
                             ),
                             SizedBox(
                               height: 7.0,
                             ),
-                            // TODO 1 go change textStyleComponents.dart that so that it allows to change padding
                             TransparentTitle(
                               pressedAction: () {},
-                              title: titles[0],
+                              title: titles[
+                                  convertGenreForIndex[this.sessionGenre] ?? 0],
                               titleSize: 15.0,
                             ),
                           ],

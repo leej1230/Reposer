@@ -93,11 +93,62 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Icon(
-                        color: Colors.black,
-                        size: 28.0,
-                        Icons.favorite_border,
+                      child: StreamBuilder<SequenceState?>(
+                        stream: audioPlayer.sequenceStateStream,
+                        builder: (context, snapshot) {
+                          final data = snapshot.data;
+                          data?.currentIndex;
+                          if ((data?.currentIndex ?? -1) == -1) {
+                            return Icon(
+                              color: Colors.black,
+                              size: 28.0,
+                              Icons.star,
+                            );
+                          } else {
+                            if (songs[data?.currentIndex ?? -1].getIsLiked()) {
+                              return GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () {
+                                  setState(() {
+                                    songs[data?.currentIndex ?? -1]
+                                        .setIsLiked(like: false);
+                                  });
+                                  SongDatabase.instance.updateLike(
+                                      songs[data?.currentIndex ?? -1]);
+                                },
+                                child: Icon(
+                                  color: Colors.black,
+                                  size: 28.0,
+                                  Icons.favorite,
+                                ),
+                              );
+                            } else {
+                              return GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () {
+                                  setState(() {
+                                    songs[data?.currentIndex ?? -1]
+                                        .setIsLiked(like: true);
+                                  });
+                                  SongDatabase.instance.updateLike(
+                                      songs[data?.currentIndex ?? -1]);
+                                },
+                                child: Icon(
+                                  color: Colors.black,
+                                  size: 28.0,
+                                  Icons.favorite_border,
+                                ),
+                              );
+                            }
+                          }
+                        },
                       ),
+
+                      // Icon(
+                      //   color: Colors.black,
+                      //   size: 28.0,
+                      //   Icons.favorite_border,
+                      // ),
                     ),
                     Center(
                       child: StreamBuilder<SequenceState?>(
@@ -107,28 +158,26 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
                           data?.currentIndex;
                           return (data?.currentIndex ?? -1) == -1
                               ? Text('Sorry :(')
-                              : Text(
-                                  '${songs[data?.currentIndex ?? -1].getSongTitle()}',
-                                  style: TextStyle(
-                                    fontSize: 25.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                              : Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 50.0,
+                                    vertical: 10.0,
+                                  ),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Text(
+                                      '${songs[data?.currentIndex ?? -1].getSongTitle()}',
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        // overflow:
+                                      ),
+                                    ),
                                   ),
                                 );
-                          // Text(
-                          //   songs[data?.currentIndex ?? -1].getSongTitle());
                         },
                       ),
-                      // songs == []
-                      //     ? Text(
-                      //         'Title ${songs[0].getSongTitle()}',
-                      //         style: TextStyle(
-                      //           fontSize: 25.0,
-                      //           color: Colors.white,
-                      //           fontWeight: FontWeight.w500,
-                      //         ),
-                      //       )
-                      //     : Text('Sorry :('),
                     ),
                   ],
                 ),
@@ -178,14 +227,20 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
                           return IconButton(
                             onPressed: audioPlayer.play,
                             iconSize: 80.0,
-                            icon: Icon(Icons.play_circle_outline_rounded),
+                            icon: Icon(
+                              Icons.play_circle_outline_rounded,
+                              color: Colors.white,
+                            ),
                           );
                         } else if (processingState !=
                             ProcessingState.completed) {
                           return IconButton(
                             onPressed: audioPlayer.pause,
                             iconSize: 80.0,
-                            icon: Icon(Icons.pause_circle_outline_rounded),
+                            icon: Icon(
+                              Icons.pause_circle_outline_rounded,
+                              color: Colors.white,
+                            ),
                           );
                         }
                       }

@@ -69,15 +69,25 @@ class _ComponentCardsState extends State<ComponentCards> {
               ),
             ),
           ),
-          CupertinoTimerPicker(
-            backgroundColor: Colors.white.withOpacity(0.3),
-            mode: CupertinoTimerPickerMode.ms,
-            initialTimerDuration: duration,
-            // This is called when the user changes the timer's
-            // duration.
-            onTimerDurationChanged: (Duration newDuration) {
-              setState(() => duration = newDuration);
-            },
+          Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 2.0,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: Colors.white.withOpacity(0.3),
+            ),
+            child: CupertinoTimerPicker(
+              backgroundColor: Colors.transparent,
+              mode: CupertinoTimerPickerMode.ms,
+              initialTimerDuration: duration,
+              // This is called when the user changes the timer's
+              // duration.
+              onTimerDurationChanged: (Duration newDuration) {
+                setState(() => duration = newDuration);
+              },
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

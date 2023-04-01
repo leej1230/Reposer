@@ -6,9 +6,8 @@ import 'sessionChoice.dart';
 import './components/textStyleComponents.dart';
 
 void main() {
-  // TODO add if statement to check whether the db already exists or not
-  // Function for initialize db if needed
   runApp(const MyApp());
+  // Function for initialize db if needed
   addSongsToDB();
 }
 

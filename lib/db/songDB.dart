@@ -103,9 +103,16 @@ CREATE TABLE $tableSongs (
 
   Future<int> updateLike(Song song) async {
     final db = await instance.database;
-
-    return db.update(tableSongs, song.toJson(),
+    print(song.toString());
+    int count = await db.update(tableSongs, song.toJson(),
         where: '${SongFields.title} = ?', whereArgs: [song.getSongTitle()]);
+    print('changed! $count');
+    final result = await db
+        .query(tableSongs, where: '${SongFields.liked} = ?', whereArgs: [1]);
+    print(result.map((json) => Song.fromJson(json)).toList());
+    return count;
+    // return db.update(tableSongs, song.toJson(),
+    //     where: '${SongFields.title} = ?', whereArgs: [song.getSongTitle()]);
   }
 
   Future close() async {
