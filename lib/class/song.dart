@@ -23,7 +23,7 @@ class SongFields {
   static const String srcUrl = 'srcUrl';
   static const String genre = 'genre';
   static const String liked = 'liked';
-  static const String lengthInSec = 'lengthInSec';
+  // static const String lengthInSec = 'lengthInSec';
 }
 
 class Song {
@@ -31,20 +31,20 @@ class Song {
   late String _srcUrl;
   late String _genre;
   late bool _liked;
-  late int _lengthInSec;
+  // late int _lengthInSec;
 
   Song({
     required title,
     required srcUrl,
     required genre,
     required liked,
-    required lengthInSec,
+    // required lengthInSec,
   }) {
     this._title = title;
     this._srcUrl = srcUrl;
     this._genre = genre;
     this._liked = liked;
-    this._lengthInSec = lengthInSec;
+    // this._lengthInSec = lengthInSec;
   }
 
   // Save song information to DB
@@ -54,7 +54,7 @@ class Song {
       SongFields.srcUrl: _srcUrl,
       SongFields.genre: _genre,
       SongFields.liked: _liked ? 1 : 0,
-      SongFields.lengthInSec: _lengthInSec,
+      // SongFields.lengthInSec: _lengthInSec,
     };
   }
 
@@ -64,7 +64,7 @@ class Song {
       srcUrl: json[SongFields.srcUrl] as String,
       genre: json[SongFields.genre] as String,
       liked: json[SongFields.liked] == 1,
-      lengthInSec: json[SongFields.lengthInSec] as Int,
+      // lengthInSec: json[SongFields.lengthInSec] as Int,
     );
     // SongFields.title: _title,
     // SongFields.srcUrl: _srcUrl,
@@ -77,7 +77,7 @@ class Song {
   // each song when using the print statement.
   @override
   String toString() {
-    return 'Song{title: $_title, srcUrl: $_srcUrl, genre: $_genre, liked: $_liked, lengthInSec: $_lengthInSec}';
+    return 'Song{title: $_title, srcUrl: $_srcUrl, genre: $_genre, liked: $_liked}';
   }
 
   //Setters
@@ -102,9 +102,5 @@ class Song {
 
   String getSongUrl() {
     return _srcUrl;
-  }
-
-  int getSongLengthInSec() {
-    return _lengthInSec;
   }
 }

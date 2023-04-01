@@ -18,26 +18,30 @@ class _SessionCardState extends State<SessionCard> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(6.0),
-        child: Column(
-          children: <Widget>[
-            GestureDetector(
-              child: widget.imgSrc,
-              onTap: () {
-                widget.sessionChosen(widget.title);
-              },
-            ),
-            SizedBox(
-              height: 7.0,
-            ),
-            // TODO 1 go change textStyleComponents.dart that so that it allows to change padding
-            TransparentTitle(
-              pressedAction: () {},
-              title: widget.title,
-              titleSize: 15.0,
-            ),
-          ],
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          widget.sessionChosen(widget.title);
+        },
+        child: Container(
+          margin: EdgeInsets.all(6.0),
+          child: Column(
+            children: <Widget>[
+              widget.imgSrc,
+
+              SizedBox(
+                height: 7.0,
+              ),
+              // TODO 1 go change textStyleComponents.dart that so that it allows to change padding
+              TransparentTitle(
+                pressedAction: () {
+                  widget.sessionChosen(widget.title);
+                },
+                title: widget.title,
+                titleSize: 15.0,
+              ),
+            ],
+          ),
         ),
       ),
     );

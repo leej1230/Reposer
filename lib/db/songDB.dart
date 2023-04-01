@@ -34,7 +34,7 @@ class SongDatabase {
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
-  // 'title': string, song name
+// 'title': string, song name
 // 'srcUrl': string, path to song
 // 'genre': string, genre of the song
 // 'liked': bool, liked the song or not
@@ -51,8 +51,7 @@ CREATE TABLE $tableSongs (
   ${SongFields.title} $textType,
   ${SongFields.srcUrl} $textType,
   ${SongFields.genre} $textType,
-  ${SongFields.liked} $boolType,
-  ${SongFields.lengthInSec} $intType,
+  ${SongFields.liked} $boolType
   )
 ''');
   }
@@ -60,13 +59,35 @@ CREATE TABLE $tableSongs (
   Future<void> create(Song song) async {
     final db = await instance.database;
 
+    var queryResult = await db.query(
+      tableSongs,
+      where: '${SongFields.title} = ?',
+      whereArgs: [song.getSongTitle()],
+    );
+
+    // If there is already an song inserted, no need to add new one
+    if (queryResult.isNotEmpty) {
+      // print('there was song!');
+      return;
+    }
+    // print('there was no song!');
     await db.insert(tableSongs, song.toJson());
+    // print('Song was added :)');
   }
 
   Future<List<Song>> readAllSong() async {
     final db = await instance.database;
 
     final result = await db.query(tableSongs);
+
+    return result.map((json) => Song.fromJson(json)).toList();
+  }
+
+  Future<List<Song>> readGenreSong(String genre) async {
+    final db = await instance.database;
+
+    final result = await db.query(tableSongs,
+        where: '${SongFields.genre} = ?', whereArgs: [genre]);
 
     return result.map((json) => Song.fromJson(json)).toList();
   }

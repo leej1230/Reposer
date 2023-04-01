@@ -15,3 +15,12 @@ List<String> imageSources = [
   'assets/images/background/11.jpg',
   'assets/images/background/11.jpg',
 ];
+
+Map<String, String> convertGenreForDB = {
+  'Relaxation': 'Relaxation',
+  'Stress Free': 'Stress-free',
+  'Peaceful': 'Peaceful',
+  'Meditation': 'Meditation',
+  'Sleep': 'Sleep',
+  'Motivation': 'Motivation'
+};

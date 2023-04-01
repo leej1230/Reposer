@@ -3,8 +3,6 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
 class AchievementCalender extends StatefulWidget {
-  const AchievementCalender({Key? key}) : super(key: key);
-
   @override
   State<AchievementCalender> createState() => _AchievementCalenderState();
 }

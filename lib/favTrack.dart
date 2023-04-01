@@ -50,7 +50,7 @@ class FavoriteTracks extends StatelessWidget {
                     ),
                     child: likedSongList(),
                   ),
-                )
+                ),
               ],
             ),
           ),

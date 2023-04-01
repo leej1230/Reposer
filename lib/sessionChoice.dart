@@ -6,7 +6,6 @@ import './components/scaffoldTemplate.dart';
 class SessionChoiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //TODO 2 make scaffold widget that can be used in each screen (take body for argument)
     return ScaffoldTemplate(
       body: Container(
         color: Color(0xFF15002c),

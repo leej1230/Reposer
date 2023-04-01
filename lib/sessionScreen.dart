@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:reposer/components/card.dart';
 import 'package:reposer/components/musicPlayerMenu.dart';
 import 'package:reposer/components/sessionTimer.dart';
 import 'package:reposer/components/textStyleComponents.dart';
 import 'package:reposer/entities/constants.dart';
 import 'components/scaffoldTemplate.dart';
+import 'achievement.dart';
 
 class SessionScreen extends StatelessWidget {
   SessionScreen({required this.sessionGenre, required this.sessionTime});
@@ -70,12 +70,19 @@ class SessionScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(9.0),
                         child: SessionTimer(
                           sessionDuration: sessionTime,
+                          afterTimerFunction: () {
+                            Navigator.pop(context);
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return AchievementScreen();
+                            }));
+                          },
                         ),
                       ),
                     )
                   ],
                 ),
-                MusicPlayerMenu(),
+                MusicPlayerMenu(genre: convertGenreForDB[sessionGenre] ?? ''),
                 //  Music Player
               ],
             ),

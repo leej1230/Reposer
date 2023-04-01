@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/db/songDB.dart';
-import '../entities/secondsToMinute.dart';
 import '../class/song.dart';
 
-List<String> musicTitle = [
-  'Music A',
-  'Music B',
-  'Music C',
-];
-
-List<int> musicTime = [
-  60,
-  59,
-  189,
-];
+// List<String> musicTitle = [
+//   'Music A',
+//   'Music B',
+//   'Music C',
+// ];
 
 class likedSongList extends StatefulWidget {
   @override
@@ -21,7 +14,7 @@ class likedSongList extends StatefulWidget {
 }
 
 class _likedSongListState extends State<likedSongList> {
-  late List<Song> songs;
+  List<Song>? songs;
   bool isLoading = false;
 
   @override
@@ -34,8 +27,8 @@ class _likedSongListState extends State<likedSongList> {
     setState(() {
       isLoading = true;
     });
-    // TODO change to readLikedSong later on
-    this.songs = await SongDatabase.instance.readAllSong();
+
+    this.songs = await SongDatabase.instance.readLikedSong();
 
     setState(() {
       isLoading = false;
@@ -44,50 +37,61 @@ class _likedSongListState extends State<likedSongList> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          for (int i = 0; i < musicTime.length; i++)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Icon(
-                      Icons.play_arrow_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 7,
-                    child: Text(
-                      musicTitle[i],
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+    if (!this.isLoading) {
+      return SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            for (final song in this.songs ?? [])
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Icon(
+                        Icons.play_arrow_rounded,
                         color: Colors.white,
-                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Center(
+                    Expanded(
+                      flex: 7,
                       child: Text(
-                        convertSecondsToMinute(timeInSecond: musicTime[i]),
+                        song.getSongTitle(),
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      // TODO unfavorite the song
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+          ],
+        ),
+      );
+    } else {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Center(
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: CircularProgressIndicator(),
               ),
-            )
+            ),
+          ),
         ],
-      ),
-    );
+      );
+    }
   }
 }

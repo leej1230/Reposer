@@ -1,13 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-// import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:convert';
 import 'package:just_audio/just_audio.dart';
 import 'package:reposer/class/seekbar.dart';
+import 'package:reposer/class/song.dart';
+import 'package:reposer/db/songDB.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
 
 class MusicPlayerMenu extends StatefulWidget {
-  const MusicPlayerMenu({Key? key}) : super(key: key);
+  final String genre;
+  const MusicPlayerMenu({Key? key, required this.genre}) : super(key: key);
 
   @override
   State<MusicPlayerMenu> createState() => _MusicPlayerMenuState();
@@ -15,32 +17,47 @@ class MusicPlayerMenu extends StatefulWidget {
 
 class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
   AudioPlayer audioPlayer = AudioPlayer();
-  String songAsset = 'assets/sounds/Sleep/Norvik - Pink Seas.mp3';
+  List<Song> songs = [];
 
-  // Future<void> _setupSession() async {
-  //   await audioPlayer.setAudioSource(
-  //     AudioSource.uri(
-  //       Uri.parse('asset:///$songAsset'),
-  //     ),
-  //   );
-  //   audioPlayer.play();
-  // }
+  _getInfo() async {
+    // final manifestJson = await rootBundle.loadString('AssetManifest.json');
+    // final manifest = json.decode(manifestJson);
+    //
+    // final assetPaths = manifest.keys
+    //     .where((String key) => key.startsWith('assets/sounds/${widget.genre}'));
+    // print(assetPaths);
+    // return assetPaths;
+    songs = await SongDatabase.instance.readGenreSong(widget.genre);
+    songs.shuffle();
+  }
+
+  Future<void> _setMusic() async {
+    await _getInfo();
+    audioPlayer.setAudioSource(
+      ConcatenatingAudioSource(
+        useLazyPreparation: true,
+        children: [
+          // Uri.parse('asset:///$songAsset'),
+          for (final song in songs)
+            AudioSource.uri(Uri.parse('asset:///${song.getSongUrl()}')),
+        ],
+      ),
+    );
+    audioPlayer.play();
+    setState(() {
+      songs;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    // _setupSession();
-    audioPlayer.setAudioSource(
-      AudioSource.uri(
-        Uri.parse('asset:///$songAsset'),
-      ),
-    );
-    audioPlayer.play();
     // audioPlayer.setSourceAsset(ConcatenatingAudioSource(
     //   children: [
     //     AudioSource.asset('')
     //   ]
     // ),);
+    _setMusic();
   }
 
   @override
@@ -83,14 +100,35 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
                       ),
                     ),
                     Center(
-                      child: Text(
-                        'Song Title',
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      child: StreamBuilder<SequenceState?>(
+                        stream: audioPlayer.sequenceStateStream,
+                        builder: (context, snapshot) {
+                          final data = snapshot.data;
+                          data?.currentIndex;
+                          return (data?.currentIndex ?? -1) == -1
+                              ? Text('Sorry :(')
+                              : Text(
+                                  '${songs[data?.currentIndex ?? -1].getSongTitle()}',
+                                  style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                );
+                          // Text(
+                          //   songs[data?.currentIndex ?? -1].getSongTitle());
+                        },
                       ),
+                      // songs == []
+                      //     ? Text(
+                      //         'Title ${songs[0].getSongTitle()}',
+                      //         style: TextStyle(
+                      //           fontSize: 25.0,
+                      //           color: Colors.white,
+                      //           fontWeight: FontWeight.w500,
+                      //         ),
+                      //       )
+                      //     : Text('Sorry :('),
                     ),
                   ],
                 ),

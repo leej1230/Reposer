@@ -5,7 +5,10 @@ import 'dart:async';
 
 class SessionTimer extends StatefulWidget {
   Duration sessionDuration;
-  SessionTimer({required Duration this.sessionDuration});
+  Function afterTimerFunction;
+  SessionTimer(
+      {required Duration this.sessionDuration,
+      required this.afterTimerFunction});
 
   @override
   State<SessionTimer> createState() => _SessionTimerState();
@@ -20,6 +23,7 @@ class _SessionTimerState extends State<SessionTimer> {
       final seconds = widget.sessionDuration.inSeconds - reduceSecondsBy;
       if (seconds < 0) {
         countdownTimer!.cancel();
+        widget.afterTimerFunction();
       } else {
         widget.sessionDuration = Duration(seconds: seconds);
       }
