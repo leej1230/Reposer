@@ -29,10 +29,11 @@ class SessionChoiceScreen extends StatelessWidget {
             Expanded(
               // flex: 3,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: 12.0, horizontal: 27.0),
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 27.0),
                     child: Text(
                       'Session Themes',
                       textAlign: TextAlign.center,
@@ -42,10 +43,6 @@ class SessionChoiceScreen extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: SearchBar(),
                   ),
                 ],
               ),

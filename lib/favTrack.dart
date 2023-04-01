@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/components/scaffoldTemplate.dart';
 import 'package:reposer/components/searchBar.dart';
+import 'package:reposer/singlePlayScreen.dart';
+import 'class/song.dart';
 import 'components/likedSongList.dart';
+import 'components/singleMusicPlayerMenu.dart';
 
 class FavoriteTracks extends StatelessWidget {
   @override
@@ -31,10 +34,6 @@ class FavoriteTracks extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 25.0),
-                      child: SearchBar(),
                     ),
                   ],
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:reposer/components/singleMusicPlayerMenu.dart';
 import 'package:reposer/db/songDB.dart';
 import '../class/song.dart';
+import '../singlePlayScreen.dart';
 
 // List<String> musicTitle = [
 //   'Music A',
@@ -9,6 +11,8 @@ import '../class/song.dart';
 // ];
 
 class likedSongList extends StatefulWidget {
+  const likedSongList({super.key});
+
   @override
   State<likedSongList> createState() => _likedSongListState();
 }
@@ -49,28 +53,61 @@ class _likedSongListState extends State<likedSongList> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: Icon(
-                        Icons.play_arrow_rounded,
-                        color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SingleSessionScreen(song: song);
+                          }));
+                        },
+                        child: Icon(
+                          Icons.play_arrow_rounded,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     Expanded(
                       flex: 7,
-                      child: Text(
-                        song.getSongTitle(),
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Text(
+                          song.getSongTitle(),
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
                       // TODO unfavorite the song
-                      child: Icon(
-                        Icons.favorite,
-                        color: Colors.white,
-                      ),
+                      child: song.getIsLiked()
+                          ? GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  song.setIsLiked(like: false);
+                                  SongDatabase.instance.updateLike(song);
+                                });
+                              },
+                              child: Icon(
+                                Icons.favorite,
+                                color: Colors.white,
+                              ),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  song.setIsLiked(like: true);
+                                  SongDatabase.instance.updateLike(song);
+                                });
+                              },
+                              child: Icon(
+                                Icons.favorite_border,
+                                color: Colors.white,
+                              ),
+                            ),
                     ),
                   ],
                 ),
