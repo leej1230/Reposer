@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/components/scaffoldTemplate.dart';
 import 'components/streak.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AchievementScreen extends StatelessWidget {
   final bool afterSession;
@@ -24,7 +25,8 @@ class AchievementScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  'Achievement',
+                  LangLocal.of(context)!.achievement,
+                  // 'Achievement',
                   style: TextStyle(
                     fontSize: 35.0,
                     color: Colors.white,

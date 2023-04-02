@@ -16,6 +16,15 @@ List<String> titles = [
   'Motivation'
 ];
 
+Map<String, String> convertTitlesToLang = {
+  'Relaxation': 'relaxation',
+  'Stress Free': 'stress_free',
+  'Peaceful': 'peaceful',
+  'Meditation': 'meditation',
+  'Sleep': 'sleep',
+  'Motivation': 'motivation'
+};
+
 List<String> imageSources = [
   'assets/images/background/7.jpg',
   'assets/images/background/7.jpg',

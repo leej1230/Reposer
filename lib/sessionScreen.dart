@@ -3,8 +3,10 @@ import 'package:reposer/components/musicPlayerMenu.dart';
 import 'package:reposer/components/sessionTimer.dart';
 import 'package:reposer/components/textStyleComponents.dart';
 import 'package:reposer/entities/constants.dart';
+import 'package:reposer/entities/sessionThemeTranslate.dart';
 import 'components/scaffoldTemplate.dart';
 import 'achievement.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SessionScreen extends StatelessWidget {
   SessionScreen({required this.sessionGenre, required this.sessionTime});
@@ -29,7 +31,9 @@ class SessionScreen extends StatelessWidget {
               children: [
                 //Title
                 Text(
-                  'Session ${sessionGenre}',
+                  LangLocal.of(context)!.session_genre(
+                      convertSessionThemeLang(sessionGenre, context)),
+                  // 'Session ${sessionGenre}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
@@ -58,8 +62,11 @@ class SessionScreen extends StatelessWidget {
                             ),
                             TransparentTitle(
                               pressedAction: () {},
-                              title: titles[
-                                  convertGenreForIndex[this.sessionGenre] ?? 0],
+                              title: convertSessionThemeLang(
+                                  titles[
+                                      convertGenreForIndex[this.sessionGenre] ??
+                                          0],
+                                  context),
                               titleSize: 15.0,
                             ),
                           ],

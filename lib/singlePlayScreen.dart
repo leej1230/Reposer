@@ -8,6 +8,7 @@ import 'package:reposer/entities/constants.dart';
 import 'components/scaffoldTemplate.dart';
 import 'achievement.dart';
 import 'dart:math';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SingleSessionScreen extends StatelessWidget {
   SingleSessionScreen({required this.song});
@@ -31,7 +32,8 @@ class SingleSessionScreen extends StatelessWidget {
               children: [
                 //Title
                 Text(
-                  'Favorite Track',
+                  LangLocal.of(context)!.favorite_tracks,
+                  // 'Favorite Track',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,

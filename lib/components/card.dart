@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../entities/sessionThemeTranslate.dart';
 import 'textStyleComponents.dart';
 
 class SessionCard extends StatefulWidget {
@@ -37,7 +38,8 @@ class _SessionCardState extends State<SessionCard> {
                 pressedAction: () {
                   widget.sessionChosen(widget.title);
                 },
-                title: widget.title,
+                // title: widget.title,
+                title: convertSessionThemeLang(widget.title, context),
                 titleSize: 15.0,
               ),
             ],

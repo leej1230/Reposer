@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:reposer/components/textStyleComponents.dart';
 import 'package:reposer/sessionChoice.dart';
 import 'entities/addSongsToDB.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'sessionChoice.dart';
 import './components/textStyleComponents.dart';
 
@@ -11,13 +13,15 @@ void main() {
   addSongsToDB();
 }
 
+// var defaultLang = Locale('en');
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Reposer',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,6 +35,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      localizationsDelegates: LangLocal.localizationsDelegates,
+      supportedLocales: LangLocal.supportedLocales,
+      // locale: defaultLang,
     );
   }
 }
@@ -47,58 +54,81 @@ class HomePage extends StatelessWidget {
             fit: BoxFit.fitHeight,
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Welcome Back',
-                // Consider making this style constant for later development
-                style: TextStyle(
-                  fontSize: 50.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                ),
+        child: Stack(
+          children: [
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    // 'Welcome Back',
+                    LangLocal.of(context)!.welcome_back,
+                    // Consider making this style constant for later development
+                    style: TextStyle(
+                      fontSize: 50.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  TransparentTitle(
+                      pressedAction: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return SessionChoiceScreen();
+                        }));
+                      },
+                      // title: 'Start Session',
+                      title: LangLocal.of(context)!.start_session,
+                      titleSize: 22.0),
+                ],
               ),
-              SizedBox(
-                height: 25.0,
-              ),
-              TransparentTitle(
-                  pressedAction: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return SessionChoiceScreen();
-                    }));
-                  },
-                  title: 'Start Session',
-                  titleSize: 22.0),
-              // TextButton(
-              //   onPressed: () {
-              //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //       return SessionChoiceScreen();
-              //     }));
-              //   },
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(
-              //       vertical: 3.0,
-              //       horizontal: 14.0,
-              //     ),
-              //     child: Text(
-              //       'Start Session',
-              //       style: TextStyle(
-              //         fontSize: 22.0,
-              //         color: Colors.white,
-              //         fontWeight: FontWeight.w800,
-              //       ),
-              //     ),
-              //   ),
-              //   style: TextButton.styleFrom(
-              //     foregroundColor: Colors.white,
-              //     backgroundColor: Colors.white.withOpacity(0.2),
-              //   ),
-              // )
-            ],
-          ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: CreditButton(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CreditButton extends StatefulWidget {
+  const CreditButton({Key? key}) : super(key: key);
+
+  @override
+  State<CreditButton> createState() => _CreditButtonState();
+}
+
+class _CreditButtonState extends State<CreditButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        AwesomeDialog(
+          context: context,
+          animType: AnimType.bottomSlide,
+          dialogType: DialogType.noHeader,
+          title: 'Credits',
+          body: Text(
+              'Credit \nIdea Proposer: Nao Nagashima \nProgrammer: Jaewoo Lee\nAssets: LINK'),
+          btnOkText: 'Done',
+          btnOkOnPress: () {},
+        )..show();
+      },
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+        decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(10.0)),
+        child: Text(
+          'Credits・クレジット表記',
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

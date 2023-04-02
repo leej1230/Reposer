@@ -4,6 +4,7 @@ import 'package:reposer/components/searchBar.dart';
 import 'package:reposer/singlePlayScreen.dart';
 import 'class/song.dart';
 import 'components/likedSongList.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'components/singleMusicPlayerMenu.dart';
 
 class FavoriteTracks extends StatelessWidget {
@@ -27,10 +28,11 @@ class FavoriteTracks extends StatelessWidget {
                       margin: EdgeInsets.symmetric(
                           vertical: 30.0, horizontal: 10.0),
                       child: Text(
-                        'Favorite Tracks',
+                        LangLocal.of(context)!.favorite_tracks,
+                        // 'Favorite Tracks',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 40.0,
+                          fontSize: 35.0,
                           fontWeight: FontWeight.w700,
                         ),
                       ),

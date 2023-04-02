@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reposer/entities/sessionThemeTranslate.dart';
 import 'package:reposer/sessionScreen.dart';
 import 'card.dart';
 import 'textStyleComponents.dart';
 import 'package:reposer/entities/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ComponentCards extends StatefulWidget {
   ComponentCards({required this.cardRow, required this.cardCol});
@@ -32,6 +34,8 @@ class _ComponentCardsState extends State<ComponentCards> {
               children: <Widget>[
                 for (int j = 0; j < this.widget.cardCol; j++)
                   SessionCard(
+                    // title: convertSessionThemeLang(
+                    // titles[i * this.widget.cardCol + j], context),
                     title: titles[i * this.widget.cardCol + j],
                     imgSrc: Image.asset(
                       imageSources[i * this.widget.cardCol + j],
@@ -62,7 +66,9 @@ class _ComponentCardsState extends State<ComponentCards> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Starting ${widget.chosenSessionGenre} Session',
+              LangLocal.of(context)!.starting_genre_session(
+                  convertSessionThemeLang(widget.chosenSessionGenre, context)),
+              // 'Starting ${widget.chosenSessionGenre} Session',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
@@ -108,7 +114,8 @@ class _ComponentCardsState extends State<ComponentCards> {
                         ),
                       );
                     },
-                    title: 'Start',
+                    // title: 'Start',
+                    title: LangLocal.of(context)!.start,
                     titleSize: 25.0),
               ),
               Padding(
@@ -119,7 +126,8 @@ class _ComponentCardsState extends State<ComponentCards> {
                         pickTime = false;
                       });
                     },
-                    title: 'Cancel',
+                    title: LangLocal.of(context)!.cancel,
+                    // title: 'Cancel',
                     titleSize: 25.0),
               ),
             ],

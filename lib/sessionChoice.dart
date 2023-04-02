@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './components/searchBar.dart';
 import './components/componentCards.dart';
 import './components/scaffoldTemplate.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SessionChoiceScreen extends StatelessWidget {
   @override
@@ -35,13 +36,16 @@ class SessionChoiceScreen extends StatelessWidget {
                   Padding(
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 27.0),
-                    child: Text(
-                      'Session Themes',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 39.0,
-                        fontWeight: FontWeight.w800,
+                    child: Center(
+                      child: Text(
+                        LangLocal.of(context)!.session_themes,
+                        // 'Session Themes',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   ),

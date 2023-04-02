@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/db/streakDateDB.dart';
 import 'package:achievement_view/achievement_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /*
 * Possible pattern
@@ -35,10 +36,12 @@ class _StreakState extends State<Streak> {
   void show(BuildContext context) async {
     AchievementView(
       context,
-      title: "Made a First Session of the Day!",
-      subTitle: "Awesome Job! ",
+      title: LangLocal.of(context)!.achievement_title,
+      // title: "Made a First Session of the Day!",
+      // subTitle: "Awesome Job! ",
+      subTitle: LangLocal.of(context)!.achievement_subtitle,
       isCircle: true,
-      listener: print,
+      // listener: print,
     ).show();
   }
 
@@ -91,18 +94,30 @@ class _StreakState extends State<Streak> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(
-            Icons.local_fire_department,
-            color: Colors.white,
-            size: 100.0,
-          ),
-          Center(
-            child: Text(
-              'Streak: ${_date?.getStreak() ?? 0}',
-              style: TextStyle(
-                fontSize: 35.0,
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Icon(
+                Icons.local_fire_department,
                 color: Colors.white,
-                fontWeight: FontWeight.w700,
+                size: 100.0,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                // '${LangLocal.of(context)!.streak}: 55555555555',
+                '${LangLocal.of(context)!.streak}: ${_date?.getStreak() ?? 0}',
+                // 'Streak: ${_date?.getStreak() ?? 0}',
+                style: TextStyle(
+                  fontSize: 30.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  // overflow:
+                ),
               ),
             ),
           ),

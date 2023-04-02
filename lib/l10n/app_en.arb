@@ -1,0 +1,48 @@
+{
+  "@@locale": "en",
+
+  "welcome_back": "Welcome Back",
+  "start_session": "Start Session",
+
+  "session_themes": "Session Themes",
+  "relaxation": "Relaxation",
+  "stress_free": "Stress Free",
+  "peaceful": "Peaceful",
+  "meditation": "Meditation",
+  "sleep": "Sleep",
+  "motivation": "Motivation",
+
+  "starting_genre_session": "Starting {sessionGenre} Session",
+  "@starting_genre_session": {
+    "description": "Message used when user choose session genre in session themes screen",
+    "placeholders": {
+      "sessionGenre": {
+        "type": "String",
+        "example": "Relaxation"
+      }
+    }
+  },
+
+  "start": "Start",
+  "cancel": "Cancel",
+
+  "session_genre": "Session {sessionGenre}",
+  "@session_genre": {
+    "description": "Message used during a session",
+    "placeholders": {
+      "sessionGenre": {
+        "type": "String",
+        "example": "Relaxation"
+      }
+    }
+  },
+
+  "favorite_tracks": "Favorite Tracks",
+
+  "achievement": "Achievement",
+
+  "streak": "Streak",
+
+  "achievement_title": "Made a First Session of the Day!",
+  "achievement_subtitle": "Awesome Job!"
+}

@@ -1,0 +1,48 @@
+{
+  "@@locale": "ja",
+
+  "welcome_back": "おかえりなさい",
+  "start_session": "セッションを開始",
+
+  "session_themes": "セッションテーマを選択",
+  "relaxation": "リラクゼーション",
+  "stress_free": "ストレスフリー",
+  "peaceful": "ピースフル",
+  "meditation": "メディテーション",
+  "sleep": "スリープ",
+  "motivation": "モチベーション",
+
+  "starting_genre_session": "{sessionGenre}を開始",
+  "@starting_genre_session": {
+    "description": "Message used when user choose session genre in session themes screen",
+    "placeholders": {
+      "sessionGenre": {
+        "type": "String",
+        "example": "リラクゼーション"
+      }
+    }
+  },
+
+  "start": "開始",
+  "cancel": "キャンセル",
+
+  "session_genre": "{sessionGenre}を開始中…",
+  "@session_genre": {
+    "description": "Message used during a session",
+    "placeholders": {
+      "sessionGenre": {
+        "type": "String",
+        "example": "リラクゼーション"
+      }
+    }
+  },
+
+  "favorite_tracks": "お気に入りトラック",
+
+  "achievement": "アチーブメント",
+
+  "streak": "ストリーク",
+
+  "achievement_title": "本日初めてのセッションが完了しました!",
+  "achievement_subtitle": "おめでとうございます!"
+}
