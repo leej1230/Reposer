@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/components/scaffoldTemplate.dart';
-import 'components/achievementCalender.dart';
+import 'components/streak.dart';
 
 class AchievementScreen extends StatelessWidget {
+  final bool afterSession;
+
+  const AchievementScreen({super.key, required this.afterSession});
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
@@ -17,6 +21,7 @@ class AchievementScreen extends StatelessWidget {
         child: SafeArea(
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   'Achievement',
@@ -26,7 +31,11 @@ class AchievementScreen extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                AchievementCalender(),
+                Expanded(
+                  child: Streak(
+                    afterSession: this.afterSession,
+                  ),
+                ),
               ],
             ),
           ),

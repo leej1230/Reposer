@@ -36,6 +36,8 @@ dependencies:
 #  audioplayers: ^3.0.1
   just_audio: ^0.9.32
   rxdart: ^0.27.7
+  flutter_calendar_carousel: ^2.4.2
+  achievement_view: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -53,7 +55,6 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   font_awesome_flutter: ^10.4.0
-  table_calendar: ^3.0.9
   intl: ^0.18.0
 
 # For information on the generic Dart part of this file, see the

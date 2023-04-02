@@ -76,7 +76,9 @@ class SessionScreen extends StatelessWidget {
                             Navigator.pop(context);
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return AchievementScreen();
+                              return AchievementScreen(
+                                afterSession: true,
+                              );
                             }));
                           },
                         ),

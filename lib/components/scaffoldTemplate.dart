@@ -60,7 +60,9 @@ class ScaffoldTemplate extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return AchievementScreen();
+                    return AchievementScreen(
+                      afterSession: false,
+                    );
                   }));
                 },
                 child: Icon(
