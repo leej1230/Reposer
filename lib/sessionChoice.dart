@@ -15,6 +15,7 @@ class SessionChoiceScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
+              flex: 2,
               child: SizedBox.expand(
                 child: Container(
                   decoration: BoxDecoration(
@@ -51,10 +52,12 @@ class SessionChoiceScreen extends StatelessWidget {
               // rows and columns
             ),
             Expanded(
-              flex: 3,
-              child: ComponentCards(
-                cardCol: 2,
-                cardRow: 3,
+              flex: 5,
+              child: SingleChildScrollView(
+                child: ComponentCards(
+                  cardCol: 2,
+                  cardRow: 3,
+                ),
               ),
             ),
           ],

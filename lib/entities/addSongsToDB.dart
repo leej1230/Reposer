@@ -28,6 +28,7 @@ void addSongsToDB() async {
     SongDatabase.instance.create(songInstance);
     // SongDatabase.instance.create(test);
   }
+  // print('Everything is up to date!');
   //
   // final l = await SongDatabase.instance.readAllSong();
   // for (final s in l) {
