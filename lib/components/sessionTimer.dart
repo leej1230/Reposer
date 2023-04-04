@@ -5,10 +5,12 @@ import 'dart:async';
 
 class SessionTimer extends StatefulWidget {
   Duration sessionDuration;
-  Function afterTimerFunction;
-  SessionTimer(
-      {required Duration this.sessionDuration,
-      required this.afterTimerFunction});
+  final Function afterTimerFunction;
+
+  SessionTimer({
+    required this.sessionDuration,
+    required this.afterTimerFunction,
+  });
 
   @override
   State<SessionTimer> createState() => _SessionTimerState();
@@ -17,7 +19,8 @@ class SessionTimer extends StatefulWidget {
 class _SessionTimerState extends State<SessionTimer>
     with WidgetsBindingObserver {
   Timer? countdownTimer;
-  late AppLifecycleState _appLifecycleState;
+  AppLifecycleState? _appLifecycleState;
+  bool singleFlag = false;
 
   void setCountDown() {
     const reduceSecondsBy = 1;
@@ -37,32 +40,45 @@ class _SessionTimerState extends State<SessionTimer>
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
   }
 
+  void stopTimer() {
+    if (countdownTimer != null) {
+      countdownTimer!.cancel();
+    }
+  }
+
   @override
-  initState() {
+  void initState() {
     super.initState();
 
-    // Starts to observe the state of screen
-    WidgetsBinding.instance.addObserver(this);
-
-    startTimer();
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
   void dispose() {
-    countdownTimer!.cancel();
-
-    // Stops observing when dispose
-    WidgetsBinding.instance.removeObserver(this);
-
+    stopTimer();
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
-  // Function that gets called when condition of screen change
   @override
-  void didChangeAppLifeCycleState(AppLifecycleState state) {
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    print(state);
     setState(() {
       _appLifecycleState = state;
     });
+    if (_appLifecycleState == AppLifecycleState.paused ||
+        _appLifecycleState == AppLifecycleState.inactive) {
+      print('break!');
+      // singleFlag = false;
+      // stopTimer();
+    }
+
+    if (_appLifecycleState == AppLifecycleState.resumed) {
+      print('started!');
+      // singleFlag = true;
+      // startTimer();
+    }
   }
 
   @override
