@@ -14,8 +14,10 @@ class SessionTimer extends StatefulWidget {
   State<SessionTimer> createState() => _SessionTimerState();
 }
 
-class _SessionTimerState extends State<SessionTimer> {
+class _SessionTimerState extends State<SessionTimer>
+    with WidgetsBindingObserver {
   Timer? countdownTimer;
+  late AppLifecycleState _appLifecycleState;
 
   void setCountDown() {
     const reduceSecondsBy = 1;
@@ -38,13 +40,29 @@ class _SessionTimerState extends State<SessionTimer> {
   @override
   initState() {
     super.initState();
+
+    // Starts to observe the state of screen
+    WidgetsBinding.instance.addObserver(this);
+
     startTimer();
   }
 
   @override
   void dispose() {
     countdownTimer!.cancel();
+
+    // Stops observing when dispose
+    WidgetsBinding.instance.removeObserver(this);
+
     super.dispose();
+  }
+
+  // Function that gets called when condition of screen change
+  @override
+  void didChangeAppLifeCycleState(AppLifecycleState state) {
+    setState(() {
+      _appLifecycleState = state;
+    });
   }
 
   @override
