@@ -15,7 +15,10 @@ class MusicPlayerMenu extends StatefulWidget {
   State<MusicPlayerMenu> createState() => _MusicPlayerMenuState();
 }
 
-class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
+class _MusicPlayerMenuState extends State<MusicPlayerMenu>
+    with WidgetsBindingObserver {
+  bool wasPlayed = true;
+  AppLifecycleState? _appLifecycleState;
   AudioPlayer audioPlayer = AudioPlayer();
   List<Song> songs = [];
 
@@ -57,13 +60,37 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
     //     AudioSource.asset('')
     //   ]
     // ),);
+
+    WidgetsBinding.instance!.addObserver(this);
+
     _setMusic();
   }
 
   @override
   void dispose() {
     audioPlayer.dispose();
+
+    WidgetsBinding.instance!.removeObserver(this);
+
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    setState(() {
+      _appLifecycleState = state;
+    });
+    if (_appLifecycleState == AppLifecycleState.paused ||
+        _appLifecycleState == AppLifecycleState.inactive) {
+      audioPlayer.pause();
+    }
+
+    if (_appLifecycleState == AppLifecycleState.resumed) {
+      if (wasPlayed) {
+        audioPlayer.play();
+      }
+    }
   }
 
   Stream<SeekBarData> get _seekBarDataStream =>
@@ -225,7 +252,10 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
                           );
                         } else if (!audioPlayer.playing) {
                           return IconButton(
-                            onPressed: audioPlayer.play,
+                            onPressed: () {
+                              audioPlayer.play();
+                              wasPlayed = true;
+                            },
                             iconSize: 80.0,
                             icon: Icon(
                               Icons.play_circle_outline_rounded,
@@ -235,7 +265,10 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu> {
                         } else if (processingState !=
                             ProcessingState.completed) {
                           return IconButton(
-                            onPressed: audioPlayer.pause,
+                            onPressed: () {
+                              audioPlayer.pause();
+                              wasPlayed = false;
+                            },
                             iconSize: 80.0,
                             icon: Icon(
                               Icons.pause_circle_outline_rounded,
