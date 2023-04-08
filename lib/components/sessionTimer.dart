@@ -50,6 +50,8 @@ class _SessionTimerState extends State<SessionTimer>
   void initState() {
     super.initState();
 
+    startTimer();
+
     WidgetsBinding.instance!.addObserver(this);
   }
 
@@ -63,21 +65,18 @@ class _SessionTimerState extends State<SessionTimer>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    print(state);
     setState(() {
       _appLifecycleState = state;
     });
     if (_appLifecycleState == AppLifecycleState.paused ||
         _appLifecycleState == AppLifecycleState.inactive) {
-      print('break!');
-      // singleFlag = false;
-      // stopTimer();
+      singleFlag = false;
+      stopTimer();
     }
 
-    if (_appLifecycleState == AppLifecycleState.resumed) {
-      print('started!');
-      // singleFlag = true;
-      // startTimer();
+    if (_appLifecycleState == AppLifecycleState.resumed && !singleFlag) {
+      singleFlag = true;
+      startTimer();
     }
   }
 
