@@ -102,10 +102,11 @@ class _SessionTimerState extends State<SessionTimer>
             Icon(
               Icons.timer_sharp,
               color: Colors.white,
+              size: 40.0,
             ),
             Text(
               '${minutes}:${seconds}',
-              style: const TextStyle(color: Colors.white, fontSize: 25.0),
+              style: const TextStyle(color: Colors.white, fontSize: 35.0),
             ),
           ],
         ),

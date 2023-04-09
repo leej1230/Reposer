@@ -15,7 +15,10 @@ class SingleMusicPlayerMenu extends StatefulWidget {
   State<SingleMusicPlayerMenu> createState() => _SingleMusicPlayerMenuState();
 }
 
-class _SingleMusicPlayerMenuState extends State<SingleMusicPlayerMenu> {
+class _SingleMusicPlayerMenuState extends State<SingleMusicPlayerMenu>
+    with WidgetsBindingObserver {
+  bool wasPlayed = true;
+  AppLifecycleState? _appLifecycleState;
   AudioPlayer audioPlayer = AudioPlayer();
 
   Future<void> _setMusic() async {
@@ -27,13 +30,37 @@ class _SingleMusicPlayerMenuState extends State<SingleMusicPlayerMenu> {
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance!.addObserver(this);
+
     _setMusic();
   }
 
   @override
   void dispose() {
     audioPlayer.dispose();
+
+    WidgetsBinding.instance!.removeObserver(this);
+
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    setState(() {
+      _appLifecycleState = state;
+    });
+    if (_appLifecycleState == AppLifecycleState.paused ||
+        _appLifecycleState == AppLifecycleState.inactive) {
+      audioPlayer.pause();
+    }
+
+    if (_appLifecycleState == AppLifecycleState.resumed) {
+      if (wasPlayed) {
+        audioPlayer.play();
+      }
+    }
   }
 
   Stream<SeekBarData> get _seekBarDataStream =>
@@ -85,7 +112,7 @@ class _SingleMusicPlayerMenuState extends State<SingleMusicPlayerMenu> {
                                   SongDatabase.instance.updateLike(widget.song);
                                 },
                                 child: Icon(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 28.0,
                                   Icons.favorite,
                                 ),
@@ -100,7 +127,7 @@ class _SingleMusicPlayerMenuState extends State<SingleMusicPlayerMenu> {
                                   SongDatabase.instance.updateLike(widget.song);
                                 },
                                 child: Icon(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 28.0,
                                   Icons.favorite_border,
                                 ),
@@ -162,18 +189,18 @@ class _SingleMusicPlayerMenuState extends State<SingleMusicPlayerMenu> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  StreamBuilder<SequenceState?>(
-                    stream: audioPlayer.sequenceStateStream,
-                    builder: (context, index) {
-                      return IconButton(
-                        iconSize: 42.0,
-                        onPressed: audioPlayer.hasPrevious
-                            ? audioPlayer.seekToPrevious
-                            : null,
-                        icon: Icon(Icons.skip_previous),
-                      );
-                    },
-                  ),
+                  // StreamBuilder<SequenceState?>(
+                  //   stream: audioPlayer.sequenceStateStream,
+                  //   builder: (context, index) {
+                  //     return IconButton(
+                  //       iconSize: 42.0,
+                  //       onPressed: audioPlayer.hasPrevious
+                  //           ? audioPlayer.seekToPrevious
+                  //           : null,
+                  //       icon: Icon(Icons.skip_previous),
+                  //     );
+                  //   },
+                  // ),
                   StreamBuilder<PlayerState>(
                     stream: audioPlayer.playerStateStream,
                     builder: (context, snapshot) {
@@ -213,17 +240,17 @@ class _SingleMusicPlayerMenuState extends State<SingleMusicPlayerMenu> {
                       return const CircularProgressIndicator();
                     },
                   ),
-                  StreamBuilder<SequenceState?>(
-                    stream: audioPlayer.sequenceStateStream,
-                    builder: (context, index) {
-                      return IconButton(
-                        iconSize: 42.0,
-                        onPressed:
-                            audioPlayer.hasNext ? audioPlayer.seekToNext : null,
-                        icon: Icon(Icons.skip_next),
-                      );
-                    },
-                  ),
+                  // StreamBuilder<SequenceState?>(
+                  //   stream: audioPlayer.sequenceStateStream,
+                  //   builder: (context, index) {
+                  //     return IconButton(
+                  //       iconSize: 42.0,
+                  //       onPressed:
+                  //           audioPlayer.hasNext ? audioPlayer.seekToNext : null,
+                  //       icon: Icon(Icons.skip_next),
+                  //     );
+                  //   },
+                  // ),
                 ],
               )
             ],

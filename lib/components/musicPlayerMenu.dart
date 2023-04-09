@@ -144,7 +144,7 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu>
                                       songs[data?.currentIndex ?? -1]);
                                 },
                                 child: Icon(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 28.0,
                                   Icons.favorite,
                                 ),
@@ -161,7 +161,7 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu>
                                       songs[data?.currentIndex ?? -1]);
                                 },
                                 child: Icon(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 28.0,
                                   Icons.favorite_border,
                                 ),

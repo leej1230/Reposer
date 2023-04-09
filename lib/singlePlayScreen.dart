@@ -17,7 +17,13 @@ class SingleSessionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldTemplate(
+    return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

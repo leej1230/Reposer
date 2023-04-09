@@ -16,7 +16,13 @@ class SessionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldTemplate(
+    return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -42,56 +48,59 @@ class SessionScreen extends StatelessWidget {
                 ),
 
                 //  Image and Timer
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  // mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    //Image
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              child: Image.asset(imageSources[
-                                  convertGenreForIndex[this.sessionGenre] ??
-                                      0]),
-                            ),
-                            SizedBox(
-                              height: 7.0,
-                            ),
-                            TransparentTitle(
-                              pressedAction: () {},
-                              title: convertSessionThemeLang(
-                                  titles[
-                                      convertGenreForIndex[this.sessionGenre] ??
-                                          0],
-                                  context),
-                              titleSize: 15.0,
-                            ),
-                          ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    // mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      //Image
+                      // Expanded(
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.all(10.0),
+                      //     child: Column(
+                      //       children: <Widget>[
+                      //         Container(
+                      //           child: Image.asset(imageSources[
+                      //               convertGenreForIndex[this.sessionGenre] ??
+                      //                   0]),
+                      //         ),
+                      //         SizedBox(
+                      //           height: 7.0,
+                      //         ),
+                      //         TransparentTitle(
+                      //           pressedAction: () {},
+                      //           title: convertSessionThemeLang(
+                      //               titles[
+                      //                   convertGenreForIndex[this.sessionGenre] ??
+                      //                       0],
+                      //               context),
+                      //           titleSize: 15.0,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      //  Timer
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(9.0),
+                          child: SessionTimer(
+                            sessionDuration: sessionTime,
+                            afterTimerFunction: () {
+                              Navigator.pop(context);
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return AchievementScreen(
+                                  afterSession: true,
+                                );
+                              }));
+                            },
+                          ),
                         ),
-                      ),
-                    ),
-                    //  Timer
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(9.0),
-                        child: SessionTimer(
-                          sessionDuration: sessionTime,
-                          afterTimerFunction: () {
-                            Navigator.pop(context);
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return AchievementScreen(
-                                afterSession: true,
-                              );
-                            }));
-                          },
-                        ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
                 MusicPlayerMenu(genre: convertGenreForDB[sessionGenre] ?? ''),
                 //  Music Player

@@ -48,9 +48,9 @@ class _SeekBarState extends State<SeekBar> {
           children: [
             Expanded(
               child: Slider(
-                activeColor: Colors.black.withOpacity(0.8),
-                inactiveColor: Colors.black.withOpacity(0.8),
-                thumbColor: Colors.black,
+                activeColor: Colors.white.withOpacity(0.8),
+                inactiveColor: Colors.grey.withOpacity(0.8),
+                thumbColor: Colors.white,
                 min: 0.0,
                 max: widget.duration.inMilliseconds.toDouble(),
                 value: min(
