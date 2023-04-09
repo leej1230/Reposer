@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:reposer/components/textStyleComponents.dart';
 import 'package:reposer/sessionChoice.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'entities/addSongsToDB.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'sessionChoice.dart';
 import './components/textStyleComponents.dart';
 
@@ -114,8 +117,27 @@ class _CreditButtonState extends State<CreditButton> {
           animType: AnimType.bottomSlide,
           dialogType: DialogType.noHeader,
           title: 'Credits',
-          body: Text(
-              'Credit \nIdea Proposer: Nao Nagashima \nProgrammer: Jaewoo Lee\nAssets: LINK'),
+          body: Column(
+            children: [
+              Text('Credit'),
+              Text('Idea Proposer: Nao Nagashima'),
+              IconButton(
+                icon: FaIcon(
+                  FontAwesomeIcons.linkedin,
+                ),
+                onPressed: () async {
+                  const url = 'https://github.com/himanshusharma89';
+                  if (await canLaunchUrlString(url)) {
+                    await launchUrlString(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+              ),
+              Text('Programmer: Jaewoo Lee'),
+              Text('Assets: LINK'),
+            ],
+          ),
           btnOkText: 'Done',
           btnOkOnPress: () {},
         )..show();

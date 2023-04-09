@@ -29,21 +29,21 @@ class SessionChoiceScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              // flex: 3,
+              flex: 1,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 27.0),
+                        EdgeInsets.symmetric(vertical: 2.0, horizontal: 5.0),
                     child: Center(
                       child: Text(
                         LangLocal.of(context)!.session_themes,
                         // 'Session Themes',
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30.0,
+                          fontSize: 26.0,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -56,11 +56,15 @@ class SessionChoiceScreen extends StatelessWidget {
               // rows and columns
             ),
             Expanded(
-              flex: 5,
-              child: SingleChildScrollView(
-                child: ComponentCards(
-                  cardCol: 2,
-                  cardRow: 3,
+              flex: 6,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    bottom: kBottomNavigationBarHeight + 20.0),
+                child: SingleChildScrollView(
+                  child: ComponentCards(
+                    cardCol: 2,
+                    cardRow: 3,
+                  ),
                 ),
               ),
             ),

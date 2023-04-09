@@ -26,12 +26,12 @@ Map<String, String> convertTitlesToLang = {
 };
 
 List<String> imageSources = [
-  'assets/images/background/7.jpg',
-  'assets/images/background/7.jpg',
-  'assets/images/background/9.jpg',
-  'assets/images/background/9.jpg',
-  'assets/images/background/11.jpg',
-  'assets/images/background/11.jpg',
+  'assets/images/tile/tile001.jpeg',
+  'assets/images/tile/tile002.jpeg',
+  'assets/images/tile/tile003.jpeg',
+  'assets/images/tile/tile004.jpeg',
+  'assets/images/tile/tile005.jpeg',
+  'assets/images/tile/tile006.jpeg',
 ];
 
 Map<String, String> convertGenreForDB = {

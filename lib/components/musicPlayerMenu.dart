@@ -223,18 +223,18 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu>
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  StreamBuilder<SequenceState?>(
-                    stream: audioPlayer.sequenceStateStream,
-                    builder: (context, index) {
-                      return IconButton(
-                        iconSize: 42.0,
-                        onPressed: audioPlayer.hasPrevious
-                            ? audioPlayer.seekToPrevious
-                            : null,
-                        icon: Icon(Icons.skip_previous),
-                      );
-                    },
-                  ),
+                  // StreamBuilder<SequenceState?>(
+                  //   stream: audioPlayer.sequenceStateStream,
+                  //   builder: (context, index) {
+                  //     return IconButton(
+                  //       iconSize: 42.0,
+                  //       onPressed: audioPlayer.hasPrevious
+                  //           ? audioPlayer.seekToPrevious
+                  //           : null,
+                  //       icon: Icon(Icons.skip_previous),
+                  //     );
+                  //   },
+                  // ),
                   StreamBuilder<PlayerState>(
                     stream: audioPlayer.playerStateStream,
                     builder: (context, snapshot) {
@@ -280,17 +280,17 @@ class _MusicPlayerMenuState extends State<MusicPlayerMenu>
                       return const CircularProgressIndicator();
                     },
                   ),
-                  StreamBuilder<SequenceState?>(
-                    stream: audioPlayer.sequenceStateStream,
-                    builder: (context, index) {
-                      return IconButton(
-                        iconSize: 42.0,
-                        onPressed:
-                            audioPlayer.hasNext ? audioPlayer.seekToNext : null,
-                        icon: Icon(Icons.skip_next),
-                      );
-                    },
-                  ),
+                  // StreamBuilder<SequenceState?>(
+                  //   stream: audioPlayer.sequenceStateStream,
+                  //   builder: (context, index) {
+                  //     return IconButton(
+                  //       iconSize: 42.0,
+                  //       onPressed:
+                  //           audioPlayer.hasNext ? audioPlayer.seekToNext : null,
+                  //       icon: Icon(Icons.skip_next),
+                  //     );
+                  //   },
+                  // ),
                 ],
               )
             ],

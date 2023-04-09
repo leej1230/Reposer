@@ -95,40 +95,81 @@ class _ComponentCardsState extends State<ComponentCards> {
               },
             ),
           ),
-          Column(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TransparentTitle(
-                    pressedAction: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return SessionScreen(
-                              sessionGenre: widget.chosenSessionGenre,
-                              sessionTime: duration,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    // title: 'Start',
-                    title: LangLocal.of(context)!.start,
-                    titleSize: 25.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return SessionScreen(
+                            sessionGenre: widget.chosenSessionGenre,
+                            sessionTime: duration,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0)),
+                    ),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    backgroundColor: MaterialStateProperty.all(
+                      Colors.white.withOpacity(0.2),
+                    ),
+                  ),
+                  // ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 18.0, vertical: 5.0),
+                    child: Text(
+                      LangLocal.of(context)!.start,
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TransparentTitle(
-                    pressedAction: () {
-                      setState(() {
-                        pickTime = false;
-                      });
-                    },
-                    title: LangLocal.of(context)!.cancel,
-                    // title: 'Cancel',
-                    titleSize: 25.0),
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      pickTime = false;
+                    });
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0)),
+                    ),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    backgroundColor: MaterialStateProperty.all(
+                      Colors.white.withOpacity(0.2),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 18.0, vertical: 5.0),
+                    child: Text(
+                      LangLocal.of(context)!.cancel,
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           )

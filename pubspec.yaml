@@ -43,6 +43,7 @@ dependencies:
   achievement_view: ^1.0.0
   intl: ^0.18.0
   awesome_dialog: ^3.0.2
+  url_launcher: ^6.1.10
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -81,6 +82,7 @@ flutter:
   # assets:
   assets:
     - assets/images/background/
+    - assets/images/tile/
     - assets/sounds/Meditation/
     - assets/sounds/Motivation/
     - assets/sounds/Peaceful/

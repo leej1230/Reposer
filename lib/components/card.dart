@@ -29,18 +29,25 @@ class _SessionCardState extends State<SessionCard> {
           child: Column(
             children: <Widget>[
               widget.imgSrc,
-
               SizedBox(
-                height: 7.0,
+                height: 5.0,
               ),
-              // TODO 1 go change textStyleComponents.dart that so that it allows to change padding
-              TransparentTitle(
-                pressedAction: () {
+              TextButton(
+                onPressed: () {
                   widget.sessionChosen(widget.title);
                 },
-                // title: widget.title,
-                title: convertSessionThemeLang(widget.title, context),
-                titleSize: 15.0,
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.white.withOpacity(0.2),
+                ),
+                child: Text(
+                  convertSessionThemeLang(widget.title, context),
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
               ),
             ],
           ),
