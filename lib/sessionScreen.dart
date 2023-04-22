@@ -36,14 +36,17 @@ class SessionScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 //Title
-                Text(
-                  LangLocal.of(context)!.session_genre(
-                      convertSessionThemeLang(sessionGenre, context)),
-                  // 'Session ${sessionGenre}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w800,
+                FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    LangLocal.of(context)!.session_genre(
+                        convertSessionThemeLang(sessionGenre, context)),
+                    // 'Session ${sessionGenre}',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
 

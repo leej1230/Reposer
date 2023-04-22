@@ -108,15 +108,18 @@ class _StreakState extends State<Streak> {
             flex: 2,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                // '${LangLocal.of(context)!.streak}: 55555555555',
-                '${LangLocal.of(context)!.streak}: ${_date?.getStreak() ?? 0}',
-                // 'Streak: ${_date?.getStreak() ?? 0}',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  // overflow:
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  // '${LangLocal.of(context)!.streak}: 555555555558778658',
+                  '${LangLocal.of(context)!.streak}: ${_date?.getStreak() ?? 0}',
+                  // 'Streak: ${_date?.getStreak() ?? 0}',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    // overflow:
+                  ),
                 ),
               ),
             ),

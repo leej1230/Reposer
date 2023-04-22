@@ -82,7 +82,6 @@ class _likedSongListState extends State<likedSongList> {
                       ),
                     ),
                     Expanded(
-                      // TODO unfavorite the song
                       child: song.getIsLiked()
                           ? GestureDetector(
                               onTap: () {

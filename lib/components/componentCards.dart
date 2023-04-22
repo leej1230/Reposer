@@ -65,13 +65,17 @@ class _ComponentCardsState extends State<ComponentCards> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              LangLocal.of(context)!.starting_genre_session(
-                  convertSessionThemeLang(widget.chosenSessionGenre, context)),
-              // 'Starting ${widget.chosenSessionGenre} Session',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20.0,
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                LangLocal.of(context)!.starting_genre_session(
+                    convertSessionThemeLang(
+                        widget.chosenSessionGenre, context)),
+                // 'Starting ${widget.chosenSessionGenre} Session',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
               ),
             ),
           ),

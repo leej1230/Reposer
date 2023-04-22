@@ -37,14 +37,17 @@ class SessionChoiceScreen extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(vertical: 2.0, horizontal: 5.0),
                     child: Center(
-                      child: Text(
-                        LangLocal.of(context)!.session_themes,
-                        // 'Session Themes',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26.0,
-                          fontWeight: FontWeight.w800,
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          LangLocal.of(context)!.session_themes,
+                          // 'Session Themes',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26.0,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                     ),

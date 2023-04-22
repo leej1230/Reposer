@@ -24,13 +24,16 @@ class AchievementScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  LangLocal.of(context)!.achievement,
-                  // 'Achievement',
-                  style: TextStyle(
-                    fontSize: 35.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
+                FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    LangLocal.of(context)!.achievement,
+                    // 'Achievement',
+                    style: TextStyle(
+                      fontSize: 35.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
                 Expanded(
