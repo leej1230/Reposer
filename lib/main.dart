@@ -63,14 +63,17 @@ class HomePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    // 'Welcome Back',
-                    LangLocal.of(context)!.welcome_back,
-                    // Consider making this style constant for later development
-                    style: TextStyle(
-                      fontSize: 50.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      // 'Welcome Back',
+                      LangLocal.of(context)!.welcome_back,
+                      // Consider making this style constant for later development
+                      style: TextStyle(
+                        fontSize: 50.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -119,14 +122,79 @@ class _CreditButtonState extends State<CreditButton> {
           title: 'Credits',
           body: Column(
             children: [
-              Text('Credit'),
-              Text('Idea Proposer: Nao Nagashima'),
-              IconButton(
-                icon: FaIcon(
-                  FontAwesomeIcons.linkedin,
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  'Credit',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
-                onPressed: () async {
-                  const url = 'https://github.com/himanshusharma89';
+              ),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text('Idea Proposer: Nao Nagashima'),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text('Programmer: Jaewoo Lee'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: FaIcon(
+                      FontAwesomeIcons.linkedin,
+                    ),
+                    onPressed: () async {
+                      const url = 'https://www.linkedin.com/in/jaewoolee1230/';
+                      if (await canLaunchUrlString(url)) {
+                        await launchUrlString(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                  ),
+                  IconButton(
+                    icon: FaIcon(
+                      FontAwesomeIcons.github,
+                    ),
+                    onPressed: () async {
+                      const url = 'https://github.com/leej1230';
+                      if (await canLaunchUrlString(url)) {
+                        await launchUrlString(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                  ),
+                ],
+              ),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text('Additional contributor: Chino Domitsu'),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              InkWell(
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    'Attribution',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  const url =
+                      'https://github.com/leej1230/Reposer/blob/master/lib/attribution.md';
                   if (await canLaunchUrlString(url)) {
                     await launchUrlString(url);
                   } else {
@@ -134,8 +202,29 @@ class _CreditButtonState extends State<CreditButton> {
                   }
                 },
               ),
-              Text('Programmer: Jaewoo Lee'),
-              Text('Assets: LINK'),
+              SizedBox(
+                height: 5,
+              ),
+              InkWell(
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    'Project Repository',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  const url = 'https://github.com/leej1230/Reposer';
+                  if (await canLaunchUrlString(url)) {
+                    await launchUrlString(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+              ),
             ],
           ),
           btnOkText: 'Done',
