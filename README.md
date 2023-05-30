@@ -1,4 +1,4 @@
-# reposer
+# Reposer
 
 Mobile application project proposed by Nao Nagashima
 
@@ -14,3 +14,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Get App
+<a href="https://play.google.com/store/apps/details?id=nao.nagashima.reposer"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=60px /></a>
